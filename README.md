@@ -1,51 +1,131 @@
-# Diabetes Prediction Using Machine Learning
+# 🩺 Diabetes Prediction using Logistic Regression
 
-## Project Overview
+A machine learning project that predicts whether a patient is likely to have diabetes based on medical diagnostic data. Built using Python and scikit-learn.
 
-This project predicts whether a patient is likely to have diabetes based on medical information such as Glucose, BMI, Blood Pressure, Age, and other health indicators.
+---
 
-## Dataset
+## 📌 Project Overview
 
-* Pima Indians Diabetes Dataset
-* 768 patient records
-* 8 medical features
-* Target variable: Outcome (0 = No Diabetes, 1 = Diabetes)
+This project uses the **Pima Indians Diabetes Dataset** to train a Logistic Regression model that classifies patients as diabetic or non-diabetic. The pipeline covers everything from data cleaning to model evaluation.
 
-## Technologies Used
+**Goal:** Early prediction of diabetes to support clinical decision-making.
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Scikit-learn
-* Jupyter Notebook
+---
 
-## Machine Learning Workflow
+## 📊 Dataset
 
-1. Data Loading
-2. Exploratory Data Analysis (EDA)
-3. Data Preprocessing
-4. Feature Scaling
-5. Model Training
-6. Prediction
-7. Performance Evaluation
+- **Source:** [Pima Indians Diabetes Database – Kaggle](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
+- **Size:** 768 samples, 8 features
+- **Target:** `Outcome` — 0 (No Diabetes), 1 (Diabetes)
 
-## Models Evaluated
+| Feature | Description |
+|---|---|
+| Pregnancies | Number of times pregnant |
+| Glucose | Plasma glucose concentration |
+| BloodPressure | Diastolic blood pressure (mm Hg) |
+| SkinThickness | Triceps skin fold thickness (mm) |
+| Insulin | 2-Hour serum insulin |
+| BMI | Body mass index |
+| DiabetesPedigreeFunction | Diabetes hereditary score |
+| Age | Age in years |
 
-* Logistic Regression
-* Random Forest
+---
 
-## Key Findings
+## 🛠️ Tech Stack
 
-* Glucose was the strongest predictor of diabetes.
-* BMI and Age also showed significant influence.
-* The selected model achieved approximately 75% accuracy.
+- Python 3.x
+- pandas, numpy
+- scikit-learn
+- matplotlib, seaborn
 
-## Project Files
+---
 
-* `Diabetes_Prediction_Project.ipynb` – Complete notebook
-* `diabetes.csv` – Dataset
+## 🔍 Project Pipeline
 
-## Author
+```
+Load Data → Clean Zeros → EDA → Train/Test Split → Scale Features → Train Model → Evaluate
+```
 
-Rubasri Rajaselvam
+Key decisions made in this project:
+- **Zero values** in medical columns (Glucose, BMI, etc.) treated as missing and replaced with column medians
+- **Train/test split before scaling** to prevent data leakage
+- `class_weight='balanced'` used to handle the 65/35 class imbalance
+- **5-fold cross-validation** for reliable accuracy estimates
+
+---
+
+## 📈 Results
+
+| Metric | Score |
+|---|---|
+| Accuracy | ~78% |
+| ROC-AUC | ~0.84 |
+| Cross-Val Mean | ~77% (±2%) |
+
+> Results may vary slightly due to random state and dataset version.
+
+---
+
+## 📁 Repository Structure
+
+```
+diabetes-prediction-ml/
+│
+├── diabetes_logistic_regression.py   # Main ML pipeline
+├── diabetes.csv                      # Dataset
+├── README.md                         # Project documentation
+│
+└── outputs/                          # Generated plots (optional)
+    ├── feature_distributions.png
+    ├── correlation_heatmap.png
+    ├── evaluation_plots.png
+    └── feature_importance.png
+```
+
+---
+
+## 🚀 How to Run
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Rubasri-R/diabetes-prediction-ml.git
+   cd diabetes-prediction-ml
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install pandas numpy scikit-learn matplotlib seaborn
+   ```
+
+3. **Run the script**
+   ```bash
+   python diabetes_logistic_regression.py
+   ```
+
+---
+
+## 📸 Sample Output
+
+> *(Add a screenshot of your confusion matrix or ROC curve here once you run the code!)*
+
+---
+
+## 🌱 Future Improvements
+
+- [ ] Try other models — Random Forest, XGBoost
+- [ ] Build a web app with Streamlit for live predictions
+- [ ] Add Jupyter Notebook version for better visualization
+- [ ] Hyperparameter tuning with GridSearchCV
+
+---
+
+## 👩‍💻 Author
+
+**Rubasri R**
+- GitHub: [@Rubasri-R](https://github.com/Rubasri-R)
+
+---
+
+## 📜 License
+
+This project is open source and available under the [MIT License](LICENSE).
